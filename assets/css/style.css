@@ -1,6 +1,6 @@
 :root {
-    --primary-color: #ec1f55;
-    --text-color: #333;
+    --primary-color: #24ddd1;
+    --text-color: rgb(102, 92, 92);
   }
   
   * {
@@ -10,7 +10,7 @@
   }
   
   body {
-    background-color: #f5f5f5;
+    background-color: #dbc9c9;
   }
   
   html {
@@ -38,12 +38,12 @@
   
   .dashboard {
     padding: 16px 16px 14px;
-    background-color: #fff;
+    background-image: linear-gradient(#eb8282, #ed95a6, #eaaac4, #e4bfd9, #e2d3e6, #e1dbef, #e0e2f7, #dfeafe, #c6edff, #a3f2ff, #7cf7ff, #5ffbf1);
     position: fixed;
     top: 0;
     width: 100%;
     max-width: 480px;
-    border-bottom: 1px solid #ebebeb;
+    border-bottom: 1px solid #eb8282;
   }
   
   /* HEADER */
@@ -54,12 +54,12 @@
   
   header h4 {
     color: var(--primary-color);
-    font-size: 12px;
+    font-size: 15px;
   }
   
   header h2 {
     color: var(--text-color);
-    font-size: 20px;
+    font-size: 22px;
   }
   
   /* CD */
@@ -87,13 +87,16 @@
   }
   
   .control .btn {
-    color: #666;
+    color: #EB8282;
     padding: 18px;
     font-size: 18px;
   }
+  .control .btn-repeat, .control .btn-random {
+    color: #94d0ec;
+  }
   
   .control .btn.active {
-    color: var(--primary-color);
+    color: #e46b6b;
   }
   
   .control .btn-toggle-play {
@@ -105,33 +108,35 @@
     display: flex;
     align-items: center;
     justify-content: center;
-    background-color: var(--primary-color);
+    background-color: #EB8282;
   }
   
   .progress {
     width: 100%;
     -webkit-appearance: none;
     height: 6px;
-    background: #d3d3d3;
+    background: #e46b6b;
     outline: none;
     opacity: 0.7;
     -webkit-transition: 0.2s;
     transition: opacity 0.2s;
   }
+
   .progress:hover {
     opacity: 1;
   }
   .progress::-webkit-slider-thumb {
     -webkit-appearance: none;
-    appearance: none;
+    appearance:none;
     width: 15px;
     height: 15px;
     border-radius: 50%;
-    background-color: var(--primary-color);
+    background-color: #e46b6b;
     
     cursor: pointer;
+    position: relative;
   }
-  
+
   /* PLAYLIST */
   .playlist {
     margin-top: 408px;
@@ -142,14 +147,14 @@
     display: flex;
     align-items: center;
     margin-bottom: 12px;
-    background-color: #fff;
+    background-color: #adeeea;
     padding: 8px 16px;
     border-radius: 5px;
     box-shadow: 0 2px 3px rgba(0, 0, 0, 0.1);
   }
   
   .song.active {
-    background-color: var(--primary-color);
+    background: linear-gradient(to bottom, #e07187,#e7a4b1, #8ee3e9, #5ffbf1);
   }
   
   .song:active {
@@ -181,7 +186,7 @@
   }
   
   .song .author {
-    font-size: 12px;
+    font-size: 15px;
     color: #999;
   }
   

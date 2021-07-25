@@ -17,7 +17,7 @@
       <!-- Header -->
       <header>
         <h4>Now playing</h4>
-        <h2>String 57th & 9th</h2>
+        <h2>Song name</h2>
       </header>
   
       <!-- CD -->
@@ -45,9 +45,13 @@
           <i class="fas fa-random"></i>
         </div>
       </div>
-  
-      <input id="progress" class="progress" type="range" value= "0" step="0.2" min="0" max="100">
-  
+      <!-- <div class="progress">
+        <div class="bar"></div>
+
+      </div> -->
+
+      <input class="progress" type="range" value= "0" step="0.2" min="0" max="100">
+
       <audio id="audio" src=""></audio>
     </div>
   
@@ -83,7 +87,7 @@
     const nextButton = $('.btn-next')
     const repeatButton = $('.btn-repeat')
     const randomButton = $('.btn-random')
-    const slider = $('#progress')
+    const slider = $('.progress')
     const playList = $('.playlist')
     // var playList = $$('.song')
     // console.log(playList)
