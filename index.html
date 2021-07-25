@@ -275,13 +275,18 @@
           _this.isPlaying = false
           }
 
-        audio.onended = function() {
+          audio.onended = function() {
           // xử lý lặp lại khi phát hết
-          if(_this.isRepeat)
-            nextButton.onclick()
-          else {
+          if(!_this.isRepeat && _this.nextSongIndex === 0 && !_this.isRandom)
+          {
             _this.currentSongIndex = _this.nextSongIndex
             _this.loadCurrentSong()
+
+          }
+            // nextButton.onclick()
+
+          else {
+            nextButton.onclick()
           }
           // render()
         }
