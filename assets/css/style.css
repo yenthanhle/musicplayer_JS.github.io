@@ -1,6 +1,6 @@
 :root {
     --primary-color: #24ddd1;
-    --text-color: rgb(102, 92, 92);
+    --text-color: rgb(83, 69, 69);
   }
   
   * {
@@ -10,18 +10,19 @@
   }
   
   body {
-    background-color: #dbc9c9;
+    background-color: #bef8c6;
   }
   
   html {
     box-sizing: border-box;
-    font-family: "Poppins", sans-serif;
+    font-family: "Arial";
   }
   
   .player {
     position: relative;
     max-width: 480px;
     margin: 0 auto;
+    
   }
   
   .player .icon-pause {
@@ -43,7 +44,7 @@
     top: 0;
     width: 100%;
     max-width: 480px;
-    border-bottom: 1px solid #eb8282;
+    border-bottom: 2px solid #eb8282;
   }
   
   /* HEADER */
@@ -54,7 +55,7 @@
   
   header h4 {
     color: var(--primary-color);
-    font-size: 15px;
+    font-size: 13px;
   }
   
   header h2 {
@@ -67,6 +68,19 @@
     display: flex;
     margin: auto;
     width: 200px;
+    height: 200px;
+    border-radius: 50%;
+    background-color: #fff;
+    box-shadow:
+    inset 0 0 300px rgb(16, 196, 55),      /* inner white */
+    inset 20px 0 30px rgb(87, 52, 201),   /* inner left magenta short */
+    inset -20px 0 30px #15ff00,  /* inner right cyan short */
+    inset 60px 0 30px rgb(57, 30, 156),  /* inner left magenta broad */
+    inset -60px 0 30px #0ff, /* inner right cyan broad */
+    0 0 20px #fff,            /* outer white */
+    -10px 0 20px #8f1eec,        /* outer left magenta */
+    10px 0 20px #6bf043;
+
   }
   
   .cd-thumb {
@@ -76,8 +90,15 @@
     background-color: #333;
     background-size: cover;
     margin: auto;
+    border-color: orange;
+    
   }
   
+  .cd-thumb:focus {
+    border: 10px solid #07c;
+    box-shadow: 10px 10px 10px #07c;
+}
+
   /* CONTROL */
   .control {
     display: flex;
@@ -90,6 +111,12 @@
     color: #EB8282;
     padding: 18px;
     font-size: 18px;
+  }
+  .control .btn:hover {
+    filter: brightness(125%);
+  }
+  *, *::before, *::after {
+    box-sizing: border-box;
   }
   .control .btn-repeat, .control .btn-random {
     color: #94d0ec;
@@ -111,7 +138,7 @@
     background-color: #EB8282;
   }
   
-  .progress {
+  /* .progress {
     width: 100%;
     -webkit-appearance: none;
     height: 6px;
@@ -120,9 +147,9 @@
     opacity: 0.7;
     -webkit-transition: 0.2s;
     transition: opacity 0.2s;
-  }
+  } */
 
-  .progress:hover {
+  /* .progress:hover {
     opacity: 1;
   }
   .progress::-webkit-slider-thumb {
@@ -135,12 +162,48 @@
     
     cursor: pointer;
     position: relative;
+  } */
+
+  
+  .progress {
+    width: 100%;
+    height: 6px;
+    position: relative;
+    background-color: #f3e8e8;
+    cursor: pointer;
   }
 
+  .progress:hover {
+    filter: brightness(125%);
+  }
+  .progress::before {
+    content: '';
+    position: absolute;
+    display: flex;
+    align-items: center;
+    background-color: #EB8282;
+    left: .0em;
+    top: .0em;
+    bottom: .0em;
+    width: calc(var(--width, 0) * 1%);
+    min-width: 0%;
+    max-width: 100%;
+  }
+  /* .bar {
+    width: 10%;
+    position: absolute;
+    display: flex;
+    align-items: center;
+    background-color: #EB8282;
+  } */
   /* PLAYLIST */
   .playlist {
-    margin-top: 408px;
-    padding: 12px;
+    margin-top: 370px;
+    padding-left: 12px;
+    padding-right: 12px;
+    padding-bottom: 12px;
+    padding-top: 15px;
+    background-color: rgb(195, 250, 248);
   }
   
   .song {
@@ -150,10 +213,13 @@
     background-color: #adeeea;
     padding: 8px 16px;
     border-radius: 5px;
-    box-shadow: 0 2px 3px rgba(0, 0, 0, 0.1);
+    box-shadow: 0 3px 4px rgba(10, 10, 10, 0.1);
   }
-  
+  .song:hover {
+    filter: brightness(105%);
+  }
   .song.active {
+    border-radius: 20px;
     background: linear-gradient(to bottom, #e07187,#e7a4b1, #8ee3e9, #5ffbf1);
   }
   

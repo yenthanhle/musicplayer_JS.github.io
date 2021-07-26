@@ -45,12 +45,10 @@
           <i class="fas fa-random"></i>
         </div>
       </div>
-      <!-- <div class="progress">
-        <div class="bar"></div>
 
-      </div> -->
+      <div class="progress" style="--width: 0"></div>
 
-      <input class="progress" type="range" value= "0" step="0.2" min="0" max="100">
+      <!-- <input class="progress" type="range" value= "0" step="0.2" min="0" max="100"> -->
 
       <audio id="audio" src=""></audio>
     </div>
@@ -99,36 +97,34 @@
       isStart: true,
       isPlaying: false,
       config: JSON.parse(localStorage.getItem(SETTING_STORAGE)) || {},
-      // isRepeat: settings.repeatOption || false,
-      // isRandom: settings.randomOption || false,
       songs: [
         {
-          name: 'At my worst',
-          singer: 'abc',
+          name: 'At My Worst',
+          singer: 'Pnk Swaet$',
           path:'./assets/music/AtMyWorst.mp3',
           image:'./assets/img/AtMyWorst.jpg'
         },
         {
-          name: 'Girl like you',
-          singer: 'abc',
-          path:'./assets/music/GirlLikeYou.mp3',
-          image: './assets/img/GirlLikeYou.jpg'
+          name: 'Girl Like You',
+          singer: 'Maroon 5',
+          path:'./assets/music/GirlsLikeYou.mp3',
+          image: './assets/img/GirlsLikeYou.jpg'
         },
         {
-          name: 'Lemon tree',
-          singer: 'abc',
+          name: 'Lemon Tree',
+          singer: 'Fool\'s Garden',
           path:'./assets/music/LemonTree.mp3',
           image: './assets/img/LemonTree.jpg'
         },
         {
           name: 'Nevada',
-          singer: 'abc',
+          singer: 'Vicetone',
           path:'./assets/music/Nevada.mp3',
           image: './assets/img/Nevada.jpg'
         },
         {
           name: 'Senorita',
-          singer: 'abc',
+          singer: 'Shawn Mendes vs Camila Cabello',
           path:'./assets/music/Senorita.mp3',
           image: './assets/img/Senorita.jpg'
         },
@@ -137,7 +133,26 @@
           singer: 'Maroon 5',
           path:'./assets/music/Sugar.mp3',
           image: './assets/img/Sugar.jpg'
-        }
+        },
+        {
+          name: 'Havana',
+          singer: 'Camila Cabello',
+          path:'./assets/music/Havana.mp3',
+          image: './assets/img/Havana.jpg'
+        },
+        {
+          name: 'Psycho',
+          singer: 'Red Velvet',
+          path:'./assets/music/Psycho.mp3',
+          image: './assets/img/Psycho.jpg'
+        },
+        {
+          name: 'I\'m Not Her',
+          singer: 'Clara Mae',
+          path:'./assets/music/ImNotHer.mp3',
+          image: './assets/img/ImNotHer.jpg'
+        },
+
       ],
 
       setConfig: function(key, value) {
@@ -189,7 +204,7 @@
           $('.song.active').classList.remove('active')
         const activeSong = $$(`.song`)[this.currentSongIndex]
         activeSong.classList.add('active')
-        this.scrollSongIntoView()
+        setTimeout(this.scrollSongIntoView(), 500)
 
 
       },
@@ -249,16 +264,19 @@
           
         }
 
-        // xử lý tua
-        slider.oninput = function(){
-          const songLength = audio.duration
-          audio.currentTime = songLength * this.value / 100
-        }
-
+        
+        slider.onclick = function(e) {
+            const songLength = audio.duration
+            const clickPosition = e.offsetX
+            audio.currentTime = Math.floor(clickPosition / slider.offsetWidth * songLength)
+            // console.log(clickPosition, slider.offsetWidth, songLength)
+          }
         // xử lý chạy slider
         audio.ontimeupdate = function() {
-          const progressPercent = Math.floor(this.currentTime / this.duration * 100)
-          slider.value = progressPercent
+          const computedStyle = getComputedStyle(slider)
+          const playedPercent = this.currentTime / this.duration * 100
+          slider.style.setProperty('--width', playedPercent)
+         
         }
 
         // xử lý play
@@ -267,8 +285,7 @@
           _this.isPlaying = true
           // console.log(cdThumb.animate)
           cdThumbAnimate.play()
-          slider.value = this.currentTime / this.duration * 100
-          
+            console.log([slider])      
           
         }
           // pause
@@ -346,14 +363,20 @@
               return this.currentSongIndex + 1 < this.songs.length ?
             this.currentSongIndex + 1 : 0
 
+           
+            
           }
         })
         
         Object.defineProperty(this, 'prevSongIndex', {
           get: function(){
             // xác định bài hát tiếp theo
+            var randomSong = 0
             if(this.isRandom) {
-              return Math.floor(Math.random() * this.songs.length)
+              do {
+                randomSong = Math.floor(Math.random() * this.songs.length)
+              }while(randomSong != this.currentSongIndex)
+              return randomSong
             }
             else
               return this.currentSongIndex - 1 >= 0 ?
@@ -364,15 +387,7 @@
 
         
       },
-
-      // tìm index của bài hát
-
-      findIndexOfSong: function(name, singer)
-      {
-        return this.songs.findIndex(x => x.name === name && x.singer === singer)
-      },
-
-   
+      
       // xử lý phát song mới khi song cũ end
       
       start: function(){
