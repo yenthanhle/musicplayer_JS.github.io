@@ -68,18 +68,7 @@
     display: flex;
     margin: auto;
     width: 200px;
-    height: 200px;
-    border-radius: 50%;
-    background-color: #fff;
-    box-shadow:
-    inset 0 0 300px rgb(16, 196, 55),      /* inner white */
-    inset 20px 0 30px rgb(87, 52, 201),   /* inner left magenta short */
-    inset -20px 0 30px #15ff00,  /* inner right cyan short */
-    inset 60px 0 30px rgb(57, 30, 156),  /* inner left magenta broad */
-    inset -60px 0 30px #0ff, /* inner right cyan broad */
-    0 0 20px #fff,            /* outer white */
-    -10px 0 20px #8f1eec,        /* outer left magenta */
-    10px 0 20px #6bf043;
+ 
 
   }
   
@@ -87,17 +76,12 @@
     width: 100%;
     padding-top: 100%;
     border-radius: 50%;
-    background-color: #333;
     background-size: cover;
     margin: auto;
-    border-color: orange;
     
   }
   
-  .cd-thumb:focus {
-    border: 10px solid #07c;
-    box-shadow: 10px 10px 10px #07c;
-}
+
 
   /* CONTROL */
   .control {
